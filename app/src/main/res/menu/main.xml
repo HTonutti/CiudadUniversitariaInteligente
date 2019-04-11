@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:id="@+id/grupo_menu" >
+        <item
+            android:id="@+id/edificios"
+            android:checkable="true"
+            android:enabled="true"
+            android:title="Edificios"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/aulas"
+            android:checkable="true"
+            android:enabled="true"
+            android:title="Aulas"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/taller"
+            android:checkable="true"
+            android:enabled="true"
+            android:title="Talleres"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/laboratorios"
+            android:checkable="true"
+            android:enabled="true"
+            android:title="Laboratorios"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/cantinas"
+            android:checkable="true"
+            android:enabled="true"
+            android:title="Cantinas"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/baños"
+            android:checkable="true"
+            android:enabled="true"
+            android:title="Baños"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/fotocopiadoras"
+            android:checkable="true"
+            android:enabled="true"
+            android:title="Fotocopiadoras"
+            android:visible="true" />
+    </group>
+
+</menu>
