@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -54,6 +55,10 @@ import java.util.Vector;
  *  Cambios de iconos de los items de la barra lateral
  *  Reordenamiento y limpieza general del codigo
  *
+ * Modificated by Sebastián Fenoglio on 27/05/2019
+ *  Función de Novedades
+ *  Función de Menú
+ *  Recepción de Notificaciones
  * */
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,9 +74,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /* Atributos de la clase*/
     private ArmaCamino oArmaCamino = null;
     private MapsFragment mapsFragment = null;
+    private MenuFragment menuFragment = null;
     private FragmentManager fm = getSupportFragmentManager();
     private IntentIntegrator scanIntegrator = new IntentIntegrator(this);
     private ultimasBusquedas ultimasBusquedas = null;
+    private news_fragment news_fragment = null;
     private Menu menu = null;
     private BaseDatos CUdb = null;
     private Toolbar toolbar;
@@ -102,11 +109,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             requestPermissions(INITIAL_PERMS, INITIAL_REQUEST);
         }
 
-        //Instancio los objetos para ArmaCamino y el MapFragment
+        //Instancio los objetos para ArmaCamino, el MapFragment y novedades
         oArmaCamino = new ArmaCamino(this);
         mapsFragment = new MapsFragment();
+        mapsFragment.setMainActivity(this);
         ultimasBusquedas = new ultimasBusquedas();
         ultimasBusquedas.setMainActivity(this);
+        news_fragment = new news_fragment();
+        news_fragment.setMainActivity(this);
+        menuFragment= new MenuFragment();
+        menuFragment.setMainActivity(this);
+
 
         //Instancio los botones del mapa, el spinner y sus listener
         DefineListener();
@@ -114,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Agrego Nodos a mi vector de nodos en oArmaCamino
         cargaNodos();
 
-        //Cambio el fragment por defecto por mi mapFragment
+//        //Cambio el fragment por defecto por mi mapFragment
         fm.beginTransaction()
                 .setCustomAnimations(R.animator.enter, R.animator.exit)
                 .replace(R.id.fragment_container, mapsFragment)
@@ -124,6 +137,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Pusheo el id del item del menu y lo selecciono del menu lateral
         IdsMenu.push(R.id.mapa_completo);
         navigationView.setCheckedItem(IdsMenu.lastElement());
+    }
+
+
+    public void firstTimeMapReadyCallback() {
+        //Notificaciones: llaman al metodo onNavigationItemSelected con el item correspondiente
+        String extra = getIntent().getStringExtra("fragment");
+        if (extra != null) {
+            switch (extra) {
+                case "menu": {
+                    fm.beginTransaction()
+                            .setCustomAnimations(R.animator.enter, R.animator.exit)
+                            .replace(R.id.fragment_container, menuFragment)
+                            .addToBackStack(null)
+                            .commit();
+
+                    //Pusheo el id del item del menu y lo selecciono del menu lateral
+                    IdsMenu.push(R.id.menu);
+                    navigationView.setCheckedItem(IdsMenu.lastElement());
+                    break;
+                }
+                case "news": {
+                    MenuItem item = navigationView.getMenu().getItem(4);
+                    onNavigationItemSelected(item);
+                    break;
+                }
+                default:
+            }
+        }
+    }
+
+    public void addToFMstack(Fragment fragment){
+        fm.beginTransaction()
+                .setCustomAnimations(R.animator.enter, R.animator.exit, R.animator.pop_enter, R.animator.pop_exit)
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
+        IdsMenu.push(fragment.getId());
     }
 
     @Override
@@ -257,6 +307,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 scanIntegrator.initiateScan();
                 break;
             }
+            case R.id.news: {
+                verComplementos(false);
+                if (!(fm.findFragmentById(R.id.fragment_container) instanceof news_fragment)) {
+                    fm.beginTransaction()
+                            .setCustomAnimations(R.animator.enter, R.animator.exit, R.animator.pop_enter, R.animator.pop_exit)
+                            .replace(R.id.fragment_container, news_fragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
+                break;
+            }
+            case R.id.menu: {
+                verComplementos(false);
+                if (!(fm.findFragmentById(R.id.fragment_container) instanceof MenuFragment)) {
+                    fm.beginTransaction()
+                            .setCustomAnimations(R.animator.enter, R.animator.exit, R.animator.pop_enter, R.animator.pop_exit)
+                            .replace(R.id.fragment_container, menuFragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
+                break;
+            }
             default: return false;
         }
         //Pusheo el id del ultimo item seleccionado del menu
@@ -265,6 +337,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     //Defino las instancias de los botones, spinner y menu asi como los listener que se necesiten
     public void DefineListener(){
@@ -361,7 +434,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             spinnerPisos.setVisibility(View.INVISIBLE);
         }
         //Esta bugueado, lo esconde pero no lo vuelve a mostrar nunca
-        menu.setGroupVisible(R.id.grupo_menu,mostrar);
+        if(menu!=null)
+            menu.setGroupVisible(R.id.grupo_menu,mostrar);
     }
 
 

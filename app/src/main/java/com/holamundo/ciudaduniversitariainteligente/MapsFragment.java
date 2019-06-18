@@ -67,8 +67,13 @@ import java.util.Vector;
  *  Creadas funciones de getEstadoMapa y activaMapa para brindar encapsulamiento, asi el atributo miMapa para a ser privado
  *  Reordenamiento y limpieza general del codigo
  *
+ * Modificated by Sebastián Fenoglio on 27/05/2019
+ *  Llamada a firstTimeMapReadyCallback() de MainActivity para que las notificaciones se ejecuten luego de que el mapa esté listo.
  * */
 public class MapsFragment extends Fragment implements OnMapReadyCallback, SensorEventListener {
+
+    private MainActivity oMainActivity = null;
+    private boolean primeraVez=true;
 
     private GoogleMap miMapa = null;
     
@@ -240,6 +245,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Sensor
         //Agrego los overlays
         CargaOverlays();
 
+        //Mapa listo---> llamar notificaciones
+        if(primeraVez) {
+            oMainActivity.firstTimeMapReadyCallback();
+            primeraVez=false;
+        }
     }
 
     //Setters, getters y demas utilidades
@@ -524,5 +534,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Sensor
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    public void setMainActivity(MainActivity oMA){
+        this.oMainActivity = oMA;
     }
 }

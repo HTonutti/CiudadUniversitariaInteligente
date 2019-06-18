@@ -43,6 +43,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         //Creo las tablas
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Punto");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Conexiones");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS Menu");
         sqLiteDatabase.execSQL("CREATE TABLE Busquedas (nombre TEXT, edificio TEXT)");
         sqLiteDatabase.execSQL("CREATE TABLE Punto (id TEXT, latitud TEXT, longitud TEXT, edificio TEXT, piso TEXT, nombre TEXT, imagen TEXT)");
         sqLiteDatabase.execSQL("CREATE TABLE Conexiones (idDesde TEXT, idHasta TEXT)");

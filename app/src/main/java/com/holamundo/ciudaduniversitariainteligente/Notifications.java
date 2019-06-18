@@ -1,16 +1,36 @@
 package com.holamundo.ciudaduniversitariainteligente;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
+import android.os.Handler;
+import android.widget.Toast;
 
-public class Notifications extends Service {
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
+
+import java.util.Map;
+
+public class Notifications extends FirebaseMessagingService {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
     public Notifications() {
     }
 
     @Override
-    public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+
+        final String mensaje= remoteMessage.getNotification().getBody();
+        if(mensaje!=null){
+            Handler handler= new Handler(getMainLooper());
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
 }
