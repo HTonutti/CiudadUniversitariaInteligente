@@ -23,6 +23,14 @@
             android:icon="@drawable/ic_border_outer_black_24dp"
             android:title="Código QR" />
         <item
+            android:id="@+id/news"
+            android:icon="@drawable/ic_folded_newspaper"
+            android:title="Novedades" />
+        <item
+            android:id="@+id/menu"
+            android:icon="@drawable/ic_dinner"
+            android:title="Menú del día" />
+        <item
             android:id="@+id/acerca"
             android:icon="@drawable/ic_menu_send"
             android:title="Acerca" />

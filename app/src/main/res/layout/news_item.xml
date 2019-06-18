@@ -1,6 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/fecha_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/common_google_signin_btn_text_light"
+        android:textAlignment="textEnd"
+        android:textSize="12sp"
+        android:text="fecha"
+        android:paddingTop="1dp"/>
+
+    <!--<TextView-->
+        <!--android:id="@+id/titulo_news"-->
+        <!--android:paddingTop="3dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:text="Titulo"-->
+        <!--/>-->
+
+    <!--<ImageView-->
+        <!--android:id="@+id/logo"-->
+        <!--android:src="@drawable/unl_logo"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:scaleType="fitXY"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--/>-->
+
+    <LinearLayout
+        android:id="@+id/medio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/titulo_news"
+            android:paddingTop="3dp"
+            android:layout_width="0dp"
+            android:layout_weight="75"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Titulo"
+            android:paddingRight="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:src="@drawable/unl_logo"
+            android:layout_width="0dp"
+            android:layout_weight="25"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            />
+
+        <!--<TextView-->
+            <!--android:id="@+id/descripcion_news"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="70"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/negro"-->
+            <!--android:textSize="15sp"-->
+            <!--android:text="Descripcion"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:justificationMode="inter_word"/>-->
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/descripcion_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/negro"
+        android:textSize="14sp"
+        android:text="Descripcion"
+        android:paddingLeft="10dp"
+        android:justificationMode="inter_word"/>
+
+    <TextView
+        android:id="@+id/hyperlink_news"
+        android:paddingTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:textColor="@color/blue"
+        android:text="@string/news_link"
+        />
+
+</LinearLayout>

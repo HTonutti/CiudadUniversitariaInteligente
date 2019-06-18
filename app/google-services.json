@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "285321302207",
+    "firebase_url": "https://ciudaduniversitariainteligente.firebaseio.com",
+    "project_id": "ciudaduniversitariainteligente",
+    "storage_bucket": "ciudaduniversitariainteligente.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285321302207:android:0e72edf246037d99",
+        "android_client_info": {
+          "package_name": "com.holamundo.ciudaduniversitariainteligente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "285321302207-7a405uhq01jqa953j6qeb0k4vqndof6m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.holamundo.ciudaduniversitariainteligente",
+            "certificate_hash": "5a4049af978467b12e38ae066403ef5de317dd2c"
+          }
+        },
+        {
+          "client_id": "285321302207-6k36n359jfd4f94o7ichgsvj807mfutc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzAO2NLjAuTc0LrkZ-3CUp6VkjPYr33PE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "285321302207-6k36n359jfd4f94o7ichgsvj807mfutc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

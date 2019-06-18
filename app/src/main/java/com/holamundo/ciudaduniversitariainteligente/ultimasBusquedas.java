@@ -44,7 +44,7 @@ public class ultimasBusquedas extends Fragment {
         CUdb = new BaseDatos(getActivity(),"DBBusquedas", null, 1);
 
         //Obtengo lo que hay en la BD
-        db = CUdb.getReadableDatabase();
+        db = CUdb.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT nombre, edificio FROM Busquedas",null);
         c.moveToFirst();
         db.close();

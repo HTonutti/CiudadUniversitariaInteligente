@@ -5,6 +5,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="news_link"><u>Ver mas...</u></string>
 
-    <string name="google_api_key">AIzaSyBIR6kyfuK6F_rLl7UCpK7DroGMca3L8Dc</string>
+    <!--Comentado porque se genero en valuex.xml al conectar con android studio-->
+    <!--<string name="google_api_key">AIzaSyBIR6kyfuK6F_rLl7UCpK7DroGMca3L8Dc</string>-->
 </resources>

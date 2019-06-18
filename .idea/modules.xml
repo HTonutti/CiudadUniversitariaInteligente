@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CUI-develop.iml" filepath="$PROJECT_DIR$/CUI-develop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CiudadUniversitariaInteligente.iml" filepath="$PROJECT_DIR$/CiudadUniversitariaInteligente.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
