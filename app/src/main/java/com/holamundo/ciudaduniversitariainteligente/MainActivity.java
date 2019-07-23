@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -95,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private MenuItem mi_fot;
     private MenuItem mi_tal;
     private Stack<Integer> IdsMenu=new Stack<>();
+    private boolean notifSinComplementos = false;
 
     /*Funciones*/
 
@@ -141,25 +141,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     public void firstTimeMapReadyCallback() {
-        //Notificaciones: llaman al metodo onNavigationItemSelected con el item correspondiente
+
+    //Notificaciones: llaman al metodo onNavigationItemSelected con el item correspondiente
         String extra = getIntent().getStringExtra("fragment");
         if (extra != null) {
             switch (extra) {
                 case "menu": {
-                    fm.beginTransaction()
-                            .setCustomAnimations(R.animator.enter, R.animator.exit)
-                            .replace(R.id.fragment_container, menuFragment)
-                            .addToBackStack(null)
-                            .commit();
-
-                    //Pusheo el id del item del menu y lo selecciono del menu lateral
-                    IdsMenu.push(R.id.menu);
-                    navigationView.setCheckedItem(IdsMenu.lastElement());
+                    MenuItem item = navigationView.getMenu().getItem(5);
+                    navigationView.setCheckedItem(item.getItemId());
+                    onNavigationItemSelected(item);
+                    notifSinComplementos = true;
                     break;
                 }
                 case "news": {
                     MenuItem item = navigationView.getMenu().getItem(4);
+                    navigationView.setCheckedItem(item.getItemId());
                     onNavigationItemSelected(item);
+                    notifSinComplementos = true;
                     break;
                 }
                 default:
@@ -210,6 +208,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mi_can=menu.findItem(R.id.cantinas);
         mi_ban=menu.findItem(R.id.baños);
         mi_fot=menu.findItem(R.id.fotocopiadoras);
+        if(notifSinComplementos){
+            menu.setGroupVisible(R.id.grupo_menu,false);
+        }
         return true;
     }
 
